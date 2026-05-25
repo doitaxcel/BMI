@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI</title>
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>Adult BMI Calculator</p>
+      </header>
+
+      <main>
+        <div class="controllers">
+          <div class="op">
+            <input type="radio" name="unit" id="US-Units" checked />
+            <p>US Customary Units</p>
+            <input type="radio" name="unit" id="Metric-Units" />
+            <p>Metric Units</p>
+          </div>
+
+          <div class="reset">
+            <p id="reset">RESET</p>
+          </div>
+        </div>
+
+        <!-- US Customary -->
+        <div id="us-ui">
+          <h5>HEIGHT</h5>
+          <div class="height-inputs">
+            <input type="text" name="" id="ft-input" value="" />
+            <p>feet (ft)</p>
+
+            <input type="text" name="" id="inch-input" value="" />
+            <p>inches (in)</p>
+          </div>
+
+          <h5>WEIGHT</h5>
+          <div class="weight-input">
+            <input type="text" name="" id="lbs-input" />
+            <p>pounds (lbs)</p>
+          </div>
+        </div>
+
+        <!-- Metric Unit -->
+        <div id="metric-ui" style="display: none">
+          <h5>HEIGHT</h5>
+          <div class="height-inputs">
+            <input type="text" name="" id="cm-input" value="" />
+            <p>centimeters (cm)</p>
+          </div>
+
+          <h5>WEIGHT</h5>
+          <div class="weight-input">
+            <input type="text" name="" id="kg-input" />
+            <p>kilograms (kg)</p>
+          </div>
+        </div>
+
+        <p id="BMI"></p>
+        <p id="result"></p>
+
+        <button id="calculate">Calculate</button>
+      </main>
+    </div>
+    <!-- SCRIPT -->
+    <script src="BMI.js"></script>
+  </body>
+</html>
