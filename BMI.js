@@ -13,7 +13,7 @@ const calculateBtn = document.getElementById("calculate");
 const BMI = document.getElementById("BMI");
 const result = document.getElementById("result");
 
-resetBtn.addEventListener("click", () => {
+function resetFields() {
   feet.value = "";
   inch.value = "";
   pounds.value = "";
@@ -21,6 +21,11 @@ resetBtn.addEventListener("click", () => {
   kg.value = "";
   BMI.innerHTML = "";
   result.innerHTML = "";
+}
+
+resetBtn.addEventListener("click", () => {
+  resetFields();
+  validateFields();
 });
 
 // RegEx for Numbers Only
@@ -90,15 +95,25 @@ function CalculateMetric() {
 
 usRadio.addEventListener("change", () => {
   if (usRadio.checked) {
+    resetFields();
     usUI.style.display = "block";
     metricUI.style.display = "none";
+
+    BMI.innerHTML = "";
+    result.innerHTML = "";
+    validateFields();
   }
 });
 
 MetricRadio.addEventListener("change", () => {
   if (MetricRadio.checked) {
+    resetFields();
     usUI.style.display = "none";
     metricUI.style.display = "block";
+
+    BMI.innerHTML = "";
+    result.innerHTML = "";
+    validateFields();
   }
 });
 
@@ -109,3 +124,27 @@ calculateBtn.addEventListener("click", () => {
     CalculateMetric();
   }
 });
+
+function fieldsChecker(inputFields) {
+  return inputFields.some((input) => input.value.trim() === "");
+}
+
+function validateFields() {
+  let hasEmptyValue;
+
+  if (usRadio.checked) {
+    hasEmptyValue = fieldsChecker([feet, inch, pounds]);
+  } else if (MetricRadio.checked) {
+    hasEmptyValue = fieldsChecker([cm, kg]);
+  }
+
+  calculateBtn.disabled = hasEmptyValue;
+}
+
+feet.addEventListener("input", validateFields);
+inch.addEventListener("input", validateFields);
+pounds.addEventListener("input", validateFields);
+cm.addEventListener("input", validateFields);
+kg.addEventListener("input", validateFields);
+
+validateFields();
